@@ -1,7 +1,7 @@
 import re
 import time
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.types import Message
 
 from EndAfk import app, botid, botname
@@ -11,7 +11,7 @@ from EndAfk.helpers import get_readable_time
 chat_watcher_group = 1
 
 
-@app.on_message(
+@Client.on_message(
     ~filters.edited & ~filters.me & ~filters.bot & ~filters.via_bot,
     group=chat_watcher_group,
 )
@@ -235,7 +235,7 @@ async def chat_watcher_func(_, message):
 welcome_group = 2
 
 
-@app.on_message(filters.new_chat_members, group=welcome_group)
+@Client.on_message(filters.new_chat_members, group=welcome_group)
 async def welcome(_, message: Message):
     chat_id = message.chat.id
     await add_served_chat(chat_id)
