@@ -21,20 +21,6 @@ async def on_start(_, message: Message):
         caption=f"hey {first_name} ! This is End Afk ! \n Nice to see ya here ✨💫! \n\n • Part of The End Network"
     )
 
-@Client.on_message(
-      filters.command(["start"], ["start@EndAfkBot"])
-    & filters.group
-    & ~filters.edited
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
-async def omfoo(_, message: Message):
-   user = await _.get_me()
-   mention = user["mention"]
-   await _.send_photo(
-      message.chat.id,
-      photo,
-      caption=f"Hey! This is End Afk \n\n • part of The End network !")
 
 @Client.on_message(filters.command("ping") & filters.user(SUDOERS))
 async def ping(_, message: Message):
