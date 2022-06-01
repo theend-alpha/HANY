@@ -8,7 +8,7 @@ from EndAfk.AlphaDB import add_afk, is_afk, remove_afk
 from EndAfk.helpers import get_readable_time
 
 
-@Client.on_message(filters.command(["afk", f"afk@{botname}"]))
+@Client.on_message(filters.command(["afk", "afk@EndAfkBot"]))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
