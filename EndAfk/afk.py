@@ -97,6 +97,14 @@ async def active_afk(_, message: Message):
             "data": _data,
             "reason": _reason,
         }
+    elif len(message.command) == 1 and message.reply_to_message.text:
+        details = {
+            _reason = (message.reply_to_message.text.split(None, 1)[1].strip())[:100]
+            "type": "text_reason",
+            "time": time.time(),
+            "data": None,
+            "reason": _reason,
+        }
     elif len(message.command) == 1 and message.reply_to_message.photo:
         await _.download_media(
             message.reply_to_message, file_name=f"{user_id}.jpg"
