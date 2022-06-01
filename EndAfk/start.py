@@ -8,7 +8,7 @@ from EndAfk.helpers import get_readable_time
 
 alpha = "https://te.legra.ph/file/5a8e62a134991d1b57e69.jpg"
 
-@Client.on_message(filters.command(["start", "ping"]))
+@Client.on_message(filters.command(["start"]))
 async def on_start(_, message: Message):
     bot_uptime = int(time.time() - boot)
     Uptime = get_readable_time(bot_uptime)
