@@ -1,4 +1,4 @@
-from Yukki import db
+from EndAfk import db
 
 chatsdb = db.chatsdb
 
