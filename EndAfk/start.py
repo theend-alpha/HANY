@@ -13,5 +13,5 @@ async def on_start(_, message: Message):
     bot_uptime = int(time.time() - boot)
     Uptime = get_readable_time(bot_uptime)
     await message.reply_photo(alpha,
-        caption=f"{botname} is alive and working good.\n\nUptime : {Uptime}"
+        caption=f"hey {first_name} ! This is End Afk ! \n Nice to see ya here ✨💫! \n\n • Part of The End Network"
     )
