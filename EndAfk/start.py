@@ -35,7 +35,7 @@ async def omfoo(_, message: Message):
       photo,
       caption=f"Hey! This is End Afk \n\n • part of The End network !")
 
-@Client.on_message(filters.command("ping"))
+@Client.on_message(filters.command("ping") & filters.user(SUDOERS))
 async def ping(_, message: Message):
     await _.send_message(
        message.chat.id,
