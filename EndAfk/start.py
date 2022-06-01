@@ -14,6 +14,7 @@ photo = "https://te.legra.ph/file/834b1444f48d090886fef.jpg"
 @Client.on_message(filters.command(["start"], ["start@EndAfkBot"]) & filters.private)
 async def on_start(_, message: Message):
     bot_uptime = int(time.time() - boot)
+    global Uptime
     Uptime = get_readable_time(bot_uptime)
     first_name = message.from_user.first_name
     await message.reply_photo(alpha,
