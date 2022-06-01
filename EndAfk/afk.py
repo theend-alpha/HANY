@@ -98,7 +98,7 @@ async def active_afk(_, message: Message):
             "reason": _reason,
         }
     elif len(message.command) == 1 and message.reply_to_message.photo:
-        await app.download_media(
+        await Client.download_media(
             message.reply_to_message, file_name=f"{user_id}.jpg"
         )
         details = {
@@ -108,7 +108,7 @@ async def active_afk(_, message: Message):
             "reason": None,
         }
     elif len(message.command) > 1 and message.reply_to_message.photo:
-        await app.download_media(
+        await Client.download_media(
             message.reply_to_message, file_name=f"{user_id}.jpg"
         )
         _reason = message.text.split(None, 1)[1].strip()
@@ -129,7 +129,7 @@ async def active_afk(_, message: Message):
                 "reason": None,
             }
         else:
-            await app.download_media(
+            await Client.download_media(
                 message.reply_to_message, file_name=f"{user_id}.jpg"
             )
             details = {
@@ -150,7 +150,7 @@ async def active_afk(_, message: Message):
                 "reason": _reason,
             }
         else:
-            await app.download_media(
+            await Client.download_media(
                 message.reply_to_message, file_name=f"{user_id}.jpg"
             )
             details = {
