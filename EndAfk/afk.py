@@ -98,8 +98,8 @@ async def active_afk(_, message: Message):
             "reason": _reason,
         }
     elif len(message.command) == 1 and message.reply_to_message.text:
+        _reason = (message.reply_to_message.text.split(None, 1)[1].strip())[:100]
         details = {
-            _reason = (message.reply_to_message.text.split(None, 1)[1].strip())[:100]
             "type": "text_reason",
             "time": time.time(),
             "data": None,
