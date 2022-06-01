@@ -1,6 +1,6 @@
 import asyncio
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
@@ -8,7 +8,7 @@ from EndAfk import SUDOERS, app
 from EndAfk.AlphaDB import get_afk_users, get_served_chats
 
 
-@app.on_message(filters.command("afkusers") & filters.user(SUDOERS))
+@Client.on_message(filters.command("afkusers") & filters.user(SUDOERS))
 async def total_users(_, message: Message):
     afk_users = []
     try:
@@ -23,7 +23,7 @@ async def total_users(_, message: Message):
     )
 
 
-@app.on_message(filters.command("broadcast") & filters.user(SUDOERS))
+@Client.on_message(filters.command("broadcast") & filters.user(SUDOERS))
 async def broadcast(_, message):
     if message.reply_to_message:
         x = message.reply_to_message.message_id
