@@ -127,7 +127,7 @@ async def chat_watcher_func(_, message):
                 found = re.findall("@([_0-9a-zA-Z]+)", message.text)
                 try:
                     get_user = found[j]
-                    user = await Client.get_users(get_user)
+                    user = await _.get_users(get_user)
                     if user.id == replied_user_id:
                         j += 1
                         continue
