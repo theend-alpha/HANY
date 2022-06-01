@@ -5,6 +5,7 @@ from pyrogram.types import Message
 
 from EndAfk import app, boot, botname
 from EndAfk.helpers import get_readable_time
+from EndAfk import SUDOERS
 
 alpha = "https://te.legra.ph/file/5a8e62a134991d1b57e69.jpg"
 
