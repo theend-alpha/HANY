@@ -3,9 +3,9 @@ import time
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Yukki import app, botname
-from Yukki.database import add_afk, is_afk, remove_afk
-from Yukki.helpers import get_readable_time
+from EndAfk import app, botname
+from EndAfk.AlphaDB import add_afk, is_afk, remove_afk
+from EndAfk.helpers import get_readable_time
 
 
 @app.on_message(filters.command(["afk", f"afk@{botname}"]))
