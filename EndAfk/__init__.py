@@ -13,7 +13,7 @@ mongo = MongoClient(config.MONGO_DB_URI)
 db = mongo.AFK
 
 botid = 0
-botname = ""
+botname = "EndAfkBot"
 
 SUDOERS = config.SUDO_USER
 
