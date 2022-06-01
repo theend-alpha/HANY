@@ -1,0 +1,61 @@
+{
+  "name": "String Generator by Alpha",
+  "description": "Telegram bot to generate Pyrogram & Telethon StringSession Made By Alpha",
+  "logo": "https://te.legra.ph/file/ac72a0208034b15f04c18.jpg",
+  "keywords": [
+    "telegram",
+    "bot",
+    "python",
+    "pyrogram"
+  ],
+    "buildpacks": [{
+    "url": "heroku/python"
+  }],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+      {
+         "options": {
+            "version": "12"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
+  "repository": "https://github.com/theend-alpha/StringBot",
+  "env": {
+    "ENVIRONMENT": {
+      "description": "Don't change ANYTHING.",
+      "required": true,
+      "value": "ANYTHING"
+    },
+    "API_ID": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true,
+      "value": "14151343"
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true,
+      "value": "9330f17086496c4580bdc8f8b24ec364"
+    },
+    "BOT_TOKEN": {
+      "description": "Obtain a Telegram bot token by contacting @BotFather",
+      "required": true,
+      "value": "5230754379:AAGSQvMthIM8Bdn07kuaaauI26VKbyrJV88"
+    },
+    "MONGO_DB_URI": {
+      "description": "omfoo db url",
+      "required": true,
+      "value": "mongodb+srv://keshavalpha:keshavalpha@cluster0.htiys.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    },
+    "SUDO_USER": {
+      "description": "omfoo",
+      "required": true,
+      "value": "1927705508 1300561364"
+    }
+  }
+}
