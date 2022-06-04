@@ -45,17 +45,7 @@
     "BOT_TOKEN": {
       "description": "Obtain a Telegram bot token by contacting @BotFather",
       "required": true,
-      "value": "5230754379:AAGSQvMthIM8Bdn07kuaaauI26VKbyrJV88"
-    },
-    "MONGO_DB_URI": {
-      "description": "omfoo db url",
-      "required": true,
-      "value": "mongodb+srv://keshavalpha:keshavalpha@cluster0.htiys.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-    },
-    "SUDO_USER": {
-      "description": "omfoo",
-      "required": true,
-      "value": "1927705508 1300561364"
+      "value": "5347226815:AAELVecaKXefOOQie1vQXRnEgRyUhFC51Do"
     }
   }
 }
