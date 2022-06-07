@@ -18,5 +18,10 @@ async def mygender(_, message: Message):
 
 @Client.on_callback_query(filters.regex("male"))
 async def Male(_: Client, query: CallbackQuery):
-    if query.from_user.id in OMFOO:
-        if 
+    if query.from_user.id == i_id:
+        if i_id in FEMALES:
+            FEMALES.remove(i_id)
+        if i_id in MALES:
+            return
+        MALES.append(i_id)
+        await query.message.edit_text("your gender is updated to male 👦 ")
