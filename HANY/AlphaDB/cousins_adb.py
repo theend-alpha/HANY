@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column
 from HANY.AlphaDB import BASE, SESSION
+from sqlalchemy.sql.sqltypes import BigInteger
 
 class Cousins(BASE):
     __tablename__ = "cousins"
