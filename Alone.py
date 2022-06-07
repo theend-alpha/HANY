@@ -31,8 +31,8 @@ class AlphaIsAlone:
 
     cousin_markup = [
           [
-          InlineKeyboardButton(" ✅ ", callback_data="addc"),
-          InlineKeyboardButton(" ❌ ", callback_data="deny")
+          InlineKeyboardButton(text=" ✅ ", callback_data="addc"),
+          InlineKeyboardButton(text=" ❌ ", callback_data="deny")
           ]
     ]
 
