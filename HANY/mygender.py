@@ -27,6 +27,7 @@ async def genderback(_: Client, query: CallbackQuery):
                 return
             MALES.append(q_id)
             await query.message.edit_text("your gender is updated to male 👦 ")
+            OMFOO.remove(q_id)
         elif query.data == "female":
             if q_id in MALES:
                 MALES.remove(q_id)
@@ -34,3 +35,4 @@ async def genderback(_: Client, query: CallbackQuery):
                 return
             FEMALES.append(q_id)
             await query.message.edit_text("your gender is updated to female 👧 ")
+            OMFOO.remove(q_id)
