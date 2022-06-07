@@ -18,20 +18,18 @@ async def mygender(_, message: Message):
 @Client.on_callback_query()
 async def genderback(_: Client, query: CallbackQuery):
     q_id = query.from_user.id
-    msg_id = query.message.message_id
-    if query.data == "male":
-        if q_id == i_id:
-            if q_id in FEMALES:
-                FEMALES.remove(q_id)
-            if q_id in MALES:
+    if i_id == q_id:
+        if query.data == "male":
+            if i_id in FEMALES:
+                FEMALES.remove(i_id)
+            if i_id in MALES:
                 return
-            MALES.append(q_id)
-            await _.edit_message_text(chat_id=c_id, message_id=msg_id, text="your gender is updated to male 👦 ")
-    elif query.data == "female":
-        if q_id == i_id:
-            if q_id in MALES:
-                MALES.remove(q_id)
-            if q_id in FEMALES:
+            MALES.append(i_id)
+            await query.message.edit_text("your gender is updated to male 👦 ")
+        elif query.data == "female":
+            if i_id in MALES:
+                MALES.remove(i_id)
+            if i_id in FEMALES:
                 return
-            FEMALES.append(q_id)
-            await _.edit_message_text(chat_id=c_id, message_id=msg_id, text="your gender is updated to female 👧 ")
+            FEMALES.append(i_id)
+            await query.message.edit_text("your gender is updated to female 👧 ")
