@@ -8,6 +8,10 @@ class Cousins(BASE):
     i_id = Column(BigInteger, primary_key=True)
     f_id = Column(BigInteger, primary_key=True)
 
+    def __init__(self, i_id, f_id):
+        self.i_id = i_id 
+        self.f_id = f_id
+
 Cousins.__table__.create(checkfirst=True)
 
 
