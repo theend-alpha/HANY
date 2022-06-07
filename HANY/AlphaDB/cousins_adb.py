@@ -26,6 +26,7 @@ async def add_cousin(i_id, f_id):
 async def are_cousins(i_id, f_id):
     try:
         SESSION.query(Cousins).get(i_id, f_id)
+        cousins = i_id.f_id
     finally:
         SESSION.close()
 
