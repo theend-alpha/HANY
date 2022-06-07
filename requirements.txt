@@ -5,3 +5,4 @@ pyrogram==1.4.16
 python-dotenv
 tgcrypto
 pyromod~=1.5
+SQLAlchemy~=1.4.21
