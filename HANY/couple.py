@@ -1,4 +1,4 @@
-""" from LifeGamesMain.AlphaDB.shipdb import get_couple, save_couple
+from LifeGamesMain.AlphaDB.shipdb import get_couple, save_couple
 from pyrogram import filters, Client
 import random
 from datetime import datetime as dt 
@@ -52,7 +52,7 @@ async def couple(_, message):
 	try:
 		chat_id = message.chat.id
 		if len(COUPLE_LIST) == 0:
-			for i in _.iter_chat_members(message.chat.id):
+			async for i in _.iter_chat_members(message.chat.id):
 				if not i.user.is_bot:
 					CHAT_LIST.append(i.user.id)
 			c1_id = random.choice(CHAT_LIST)
@@ -76,4 +76,4 @@ async def couple(_, message):
 			
 			await _.send_message(message.chat.id, c_s_m) 	 
 	except Exception as e:
-		await message.reply_text(f"Error : {e}") """
+		await message.reply_text(f"Error : {e}")
