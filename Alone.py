@@ -33,3 +33,8 @@ class AlphaIsAlone:
           [InlineKeyboardButton(" ✅ ", callback_data="addc"),
           [InlineKeyboardButton(" ❌ ", callback_data="deny")
     ]
+
+    gender_markup = [
+          [InlineKeyboardButton(" Male 👦 ", callback_data="male"),
+          [InlineKeyboardButton(" Female 👧 ", callback_data="female")
+    ]
