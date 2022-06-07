@@ -25,3 +25,13 @@ async def Male(_: Client, query: CallbackQuery):
             return
         MALES.append(i_id)
         await query.message.edit_text("your gender is updated to male 👦 ")
+
+@Client.on_callback_query(filters.regex("female"))
+async def Female(_: Client, query: CallbackQuery):
+    if query.from_user.id == i_id:
+        if i_id in MALES:
+            MALES.remove(i_id)
+        if i_id in FEMALES:
+            return
+        FEMALES.append(i_id)
+        await query.message.edit_text("your gender is updated to female 👧 ")
