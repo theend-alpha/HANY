@@ -34,20 +34,20 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
     elif query == "male":
         chat_id = callback_query.from_user.id
         message_id = callback_query.from_user.id 
+        add_male(chat_id)
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
-            add_male(chat_id),
             text="Your gender is updated to male 👦 ",
             disable_web_page_preview=True,
         )
     elif query == "female":
         chat_id = callback_query.from_user.id
         message_id = callback_query.from_user.id 
+        add_female(chat_id),
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
-            add_female(chat_id),
             text="Your gender is updated to female 👧 ",
             disable_web_page_preview=True,
         )
