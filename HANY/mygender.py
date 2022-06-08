@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, CallbackQuery, Message
 from Alone import AlphaIsAlone
+from HANY.AlphaDB.genders_adb import add_male, add_female
 
 @Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & ~filters.via_bot & ~filters.forwarded & ~filters.edited)
 async def mygender(_, message: Message):
