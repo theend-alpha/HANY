@@ -17,7 +17,8 @@ async def genderback(_: Client, query: CallbackQuery):
         if query.data.startswith("male"):
             if query.data == "male":
                 add_male(query.from_user.id)
-                await _.edit_message_text(query.message.chat.id, query.message.message_id, "your gender is updated to male 👦 ")
+                await query.message.reply("your gender is updated to male 👦 ")
+                await query.message.delete()
 
         elif query.data == "female":
             add_female(query.from_user.id)
