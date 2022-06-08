@@ -3,6 +3,8 @@ from pyrogram.types import InlineKeyboardMarkup, CallbackQuery, Message
 from Alone import AlphaIsAlone
 from HANY.AlphaDB.genders_adb import id_is_male, id_is_female, flee, get_males, get_females
 
+B_U = """ Bot Users \n\n No of males = {} \n No of females = {} """
+
 @Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & filters.private & ~filters.edited &filters.incoming)
 async def mygender(_, message: Message):
     global i_id
@@ -29,4 +31,4 @@ async def flew(_, message: Message):
 async def _users(_, message: Message)
     m_c = await get_males()
     f_c = await get_females()
-    await message.reply(f""" Bot Users \n\n No of males = {m_c} \n No of females = {f_c} """)
+    await message.reply(B_U.format(m_c, f_c))
