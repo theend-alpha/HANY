@@ -49,13 +49,13 @@ async def add_female(i_id):
 
 async def get_males():
     try:
-        SESSION.query(Males).count()
+        return SESSION.query(Males).count()
     finally:
         SESSION.close()
 
 async def get_females():
     try:
-        SESSION.query(Females).count()
+        return SESSION.query(Females).count()
     finally:
         SESSION.close()
 
