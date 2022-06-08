@@ -25,3 +25,7 @@ Females.__table__.create(checkfirst=True)
 
 async def add_male(i_id):
     is_male = SESSION.query(Males).get(i_id)
+    if not is_male:
+        adder = Males(i_id)
+        SESSION.add(adder)
+        SESSION.commit()
