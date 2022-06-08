@@ -11,7 +11,7 @@ async def mygender(_, message: Message):
     c_id = message.chat.id
     await _.send_message(c_id, f"{i_m}, Set your gender !", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
 
-@Client_on_callback_query()
+@Client.on_callback_query()
 async def genderback(_: Client, query: CallbackQuery):
     if i_id == query.from_user.id:
         if query.data.startswith("male"):
