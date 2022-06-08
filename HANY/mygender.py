@@ -14,13 +14,11 @@ async def mygender(_, message: Message):
 @Client.on_callback_query()
 async def genderback(_: Client, query: CallbackQuery):
     if i_id == query.from_user.id:
-        if query.data.startswith("male"):
-            if query.data == "male":
-                add_male(query.from_user.id)
-                await query.message.reply("your gender is updated to male 👦 ")
-                await query.message.delete()
-
+        if query.data == "male":
+            add_male(query.from_user.id)
+            await query.edit_message_text("your gender is updated to male 👦 ")
+            await query.message.delete
         elif query.data == "female":
             add_female(query.from_user.id)
-            await query.message.reply("your gender is updated to female 👧 ")
+            await query.edit_message_text("your gender is updated to female 👧 ")
             await query.message.delete()
