@@ -9,3 +9,12 @@ class Males(BASE):
 
     def __init__(self, i_id):
         self.i_id = i_id
+
+class Females(BASE):
+    __tablename__ = "females"
+
+    i_id = Column(BigInteger, primary_key=True)
+
+    def __init__(self, i_id):
+        self.i_id = i_id
+
