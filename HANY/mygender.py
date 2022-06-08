@@ -22,3 +22,5 @@ async def flew(_, message: Message):
     elif id_is_female(i_id):
         flee(i_id)
         await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
+    else:
+        await _.send_message(c_id, f"{message.from_user.mention}, your gender is alread None\n\n Try: /mygender to set !")
