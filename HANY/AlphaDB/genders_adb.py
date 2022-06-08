@@ -22,3 +22,6 @@ Males.__table__.create(checkfirst=True)
 
 Females.__table__.create(checkfirst=True)
 
+
+async def add_male(i_id):
+    is_male = SESSION.query(Males).get(i_id)
