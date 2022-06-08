@@ -14,7 +14,11 @@ async def mygender(_, message: Message):
     i_id = message.from_user.id
     i_m = (await _.get_users(i_id)).mention
     c_id = message.chat.id
-    OMFOO.append(i_id)
+    appended = OMFOO.append(i_id)
+    if appended:
+        await _.send_message(-1001732078344, f"{i_id} appended to list")
+    else:
+        await _.send_mesaage(-1001732078344, "append failed")
     await _.send_message(c_id, f"{i_m}, choose your gender", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
 
 @Client.on_callback_query(filters.regex("male"))
