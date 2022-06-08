@@ -29,4 +29,4 @@ async def flew(_, message: Message):
 async def _users(_, message: Message)
     m_c = await get_males()
     f_c = await get_females()
-    await message.reply(f" Bot Users \n\n No of males = {m_c} \n No of females = {f_c} "
+    await message.reply(f""" Bot Users \n\n No of males = {m_c} \n No of females = {f_c} """)
