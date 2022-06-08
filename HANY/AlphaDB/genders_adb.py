@@ -18,3 +18,7 @@ class Females(BASE):
     def __init__(self, i_id):
         self.i_id = i_id
 
+Males.__table__.create(checkfirst=True)
+
+Females.__table__.create(checkfirst=True)
+
