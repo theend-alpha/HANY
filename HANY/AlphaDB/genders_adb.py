@@ -66,3 +66,15 @@ async def flee(i_id):
         SESSION.delete(is_male)
     if is_female:
         SESSION.delete(is_female)
+
+async def id_is_male(i_id):
+    try:
+        SESSION.query(Males).get(i_id)
+    finally:
+        SESSION.close()
+
+async def id_is_female(i_id):
+    try:
+        SESSION.query(Females).get(i_id)
+    finally:
+        SESSION.close()
