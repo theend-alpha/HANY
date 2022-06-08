@@ -10,3 +10,15 @@ async def mygender(_, message: Message):
     i_m = (await _.get_users(i_id)).mention
     c_id = message.chat.id
     await _.send_message(c_id, f"{i_m}, Set your gender !", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
+
+@Client_on_callback_query()
+async def genderback(_: Client, query: CallbackQuery):
+    if i_id == query.from_user.id:
+        if query.data.startswith("male"):
+            if query.data == "male":
+                add_male(query.from_user.id)
+                await _.edit_message_text(query.message.chat.id, query.message.message_id, "your gender is updated to male 👦 ")
+
+        elif query.data == "female":
+            add_female(query.from_user.id)
+            await _.edit_message_text(query.message.chat.id, query.message.message_id, "your gender is updated to female 👧 ")
