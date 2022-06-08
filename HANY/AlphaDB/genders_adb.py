@@ -28,9 +28,9 @@ async def add_male(i_id):
     is_female = SESSION.query(Females).get(i_id)
     if is_female:
         SESSION.delete(is_female)
-    if is_male:
+    elif is_male:
         return
-    if not is_male:
+    elif not is_male:
         adder = Males(i_id)
         SESSION.add(adder)
         SESSION.commit()
@@ -40,9 +40,9 @@ async def add_female(i_id):
     is_male = SESSION.query(Males).get(i_id)
     if is_female:
         return
-    if is_male:
+    elif is_male:
         SESSION.delete(is_male)
-    if not is_female:
+    elif not is_female:
         adder = Females(i_id)
         SESSION.add(adder)
         SESSION.commit()
@@ -64,7 +64,7 @@ async def flee(i_id):
     is_female = SESSION.query(Females).get(i_id)
     if is_male:
         SESSION.delete(is_male)
-    if is_female:
+    elif is_female:
         SESSION.delete(is_female)
 
 async def id_is_male(i_id):
