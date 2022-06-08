@@ -19,6 +19,6 @@ async def flew(_, message: Message):
     if id_is_male(i_id):
         flee(i_id)
         await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
-    if id_is_female(i_id):
+    elif id_is_female(i_id):
         flee(i_id)
         await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
