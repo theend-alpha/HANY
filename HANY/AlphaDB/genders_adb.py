@@ -58,3 +58,11 @@ async def get_females():
         SESSION.query(Females).count()
     finally:
         SESSION.close()
+
+async def flee(i_id):
+    is_male = SESSION.query(Males).get(i_id)
+    is_female = SESSION.query(Females).get(i_id)
+    if is_male:
+        SESSION.delete(is_male)
+    if is_female:
+        SESSION.delete(is_female)
