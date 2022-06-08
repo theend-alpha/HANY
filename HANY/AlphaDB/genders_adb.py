@@ -29,3 +29,10 @@ async def add_male(i_id):
         adder = Males(i_id)
         SESSION.add(adder)
         SESSION.commit()
+
+async def add_female(i_id):
+    is_female = SESSION.query(Females).get(i_id)
+    if not is_female:
+        adder = Females(i_id)
+        SESSION.add(adder)
+        SESSION.commit()
