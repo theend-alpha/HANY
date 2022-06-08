@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, CallbackQuery, Message
 from Alone import AlphaIsAlone
-from HANY.AlphaDB.genders_adb import id_is_male, id_is_female, flee
+from HANY.AlphaDB.genders_adb import id_is_male, id_is_female, flee, get_males, get_females
 
 @Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & filters.private & ~filters.edited &filters.incoming)
 async def mygender(_, message: Message):
@@ -24,3 +24,4 @@ async def flew(_, message: Message):
         await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
     else:
         await _.send_message(c_id, f"{message.from_user.mention}, your gender is alread None\n\n Try: /mygender to set !")
+
