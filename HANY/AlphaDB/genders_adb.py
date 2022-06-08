@@ -28,6 +28,8 @@ async def add_male(i_id):
     is_female = SESSION.query(Females).get(i_id)
     if is_female:
         SESSION.delete(is_female)
+    if is_male:
+        return
     if not is_male:
         adder = Males(i_id)
         SESSION.add(adder)
@@ -36,6 +38,8 @@ async def add_male(i_id):
 async def add_female(i_id):
     is_female = SESSION.query(Females).get(i_id)
     is_male = SESSION.query(Males).get(i_id)
+    if is_female:
+        return
     if is_male:
         SESSION.delete(is_male)
     if not is_female:
