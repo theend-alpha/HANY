@@ -25,3 +25,8 @@ async def flew(_, message: Message):
     else:
         await _.send_message(c_id, f"{message.from_user.mention}, your gender is alread None\n\n Try: /mygender to set !")
 
+@Client.on_message(filters.command(["users", "users@nothehe_bot"]) & ~filters.edited)
+async def _users(_, message: Message)
+    m_c = await get_males()
+    f_c = await get_females()
+    await message.reply(f" Bot Users \n\n No of males = {m_c} \n No of females = {f_c} "
