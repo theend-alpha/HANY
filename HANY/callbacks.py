@@ -2,6 +2,7 @@ from Data import Data
 from Yashvi import Keshav
 from pyrogram import Client
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
+from HANY.AlphaDB.genders_adb import add_male, add_female
 
 @Client.on_callback_query()
 async def _callbacks(bot: Client, callback_query: CallbackQuery):
@@ -40,4 +41,21 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(Keshav.home_button),
         )
-    
+    elif query == "male":
+        chat_id = callback_query.from_user.id
+        message_id = callback_query.message.message_id
+        add_male(chat_id)
+        await bot.edit_message_text(
+            chat_id=chat_id,
+            message_id=message_id,
+            text="Your gender is updated to male 👦 ",
+        )
+    elif query == "female":
+        chat_id = callback_query.from_user.id
+        message_id = callback_query.message.message_id
+        add_female(chat_id)
+        await bot.edit_message_text(
+            chat_id=chat_id,
+            message_id=message_id,
+            text="Your gender is updated to female 👧  ",
+        )
