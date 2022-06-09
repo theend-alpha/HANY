@@ -3,10 +3,15 @@ from pyrogram.types import Message, CallbackQuery
 from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousins_list_for
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 
+OMFOO = []
+
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
     global i_id
     global f_id
+    global f_m
+    global i_m
+    global OMFOO
     i_id = message.from_user.id
     c_id = message.chat.id
     i_m = message.from_user.mention
@@ -18,6 +23,7 @@ async def csn(_, message: Message):
         except:
             message.reply("Omfoo Try: /cousin < user_id > ")
     f_m = (await _.get_users(f_id)).mention
+    OMFOO.append(f_id)
     id_is_male(i_id)
     id_is_female(i_id)
     if i_id in MALES:
@@ -31,9 +37,22 @@ async def csn(_, message: Message):
 
 @Client.on_callback_query()
 async def csnback(_: Client, query: CallbackQuery):
+    global i_id
+    global f_id
+    global i_m
+    global f_m
+    global OMFOO
     q_id = query.from_user.id
-    if f_id == q_id:
+    if q_id in OMFOO:
         if query.data == "addc":
             add_cousin(q_id, i_id)
             add_cousin(i_id, q_id)
-            await query.edit 
+            await query.message.reply(f"{f_m} accepted {i_m} as their cousin ! ")
+            OMFOO.remove(q_id)
+        elif query.data == "deny":
+            await query.message.delete()
+            OMFOO.remove(q_id)
+    else:
+        if query.data in ["addc", "deny"]:
+            await query.answer("This is not for you dude", show_alert=True)
+        
