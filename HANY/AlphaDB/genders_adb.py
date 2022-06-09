@@ -8,20 +8,22 @@ class Males(BASE):
 
     i_id = Column(BigInteger, primary_key=True)
     is_id_male = Column(Boolean)
-    is_id_female = Column(Boolean)
+   
 
-    def __init__(self, i_id, is_id_male=True, is_id_female=True):
+    def __init__(self, i_id, is_id_male=True):
         self.i_id = i_id
         self.is_id_male = is_id_male
-        self.is_id_female = is_id_female
+       
 
 class Females(BASE):
     __tablename__ = "females"
 
     i_id = Column(BigInteger, primary_key=True)
+    is_id_female = Column(Boolean)
 
-    def __init__(self, i_id):
+    def __init__(self, i_id, is_id_female=True):
         self.i_id = i_id
+        self.is_id_female = is_id_female
 
 Males.__table__.create(checkfirst=True)
 
