@@ -67,10 +67,8 @@ def rmv_male(i_id):
         if is_male:
             SESSION.delete(is_male)
             SESSION.commit()
-            return True
         else:
             SESSION.close()
-            return False
 
 def rmv_female(i_id):
     with FEMALE_IL:
@@ -78,7 +76,5 @@ def rmv_female(i_id):
         if is_female:
             SESSION.delete(is_female)
             SESSION.commit()
-            return True
         else:
             SESSION.close()
-            return False
