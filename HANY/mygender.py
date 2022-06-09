@@ -29,6 +29,6 @@ async def flew(_, message: Message):
 
 @Client.on_message(filters.command(["users", "users@nothehe_bot"]) & ~filters.edited)
 async def _users(_, message: Message):
-    m_c = await get_males()
-    f_c = await get_females()
+    m_c = get_males()
+    f_c = get_females()
     await message.reply(B_U.format(m_c, f_c))
