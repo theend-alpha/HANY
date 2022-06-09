@@ -7,7 +7,7 @@ B_U = """ Bot Users \n\n No of males = {} \n No of females = {} """
 
 M_G = """ Current Status - {} \n\n {}, update your gender !"""
 
-@Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & filters.private & ~filters.edited &filters.incoming)
+@Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & filters.private & ~filters.edited & filters.incoming)
 async def mygender(_, message: Message):
     global i_id
     i_id = message.from_user.id
