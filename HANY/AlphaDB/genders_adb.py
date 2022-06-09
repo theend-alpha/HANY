@@ -46,13 +46,13 @@ def add_female(i_id):
 
 def male_append(i_id):
     global MALES
-    males = SESSION.query(Males).get(i_id)
+    males = SESSION.query(Males).all()
     for male in males:
         MALES.append(male)
 
 def female_append(i_id):
     global FEMALES
-    females = SESSION.query(Females).get(i_id)
+    females = SESSION.query(Females).all()
     for female in females:
         FEMALES.append(female)
 
