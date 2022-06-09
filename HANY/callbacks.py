@@ -2,7 +2,7 @@ from Data import Data
 from Yashvi import Keshav
 from pyrogram import Client
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
-from HANY.AlphaDB.genders_adb import add_male, add_female
+from HANY.AlphaDB.genders_adb import add_male, add_female, rmv_female, rmv_male
 
 @Client.on_callback_query()
 async def _callbacks(bot: Client, callback_query: CallbackQuery):
