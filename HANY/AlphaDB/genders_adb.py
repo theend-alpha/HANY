@@ -49,12 +49,16 @@ def id_is_male(i_id):
     male = SESSION.query(Males).get(i_id)
     if male:
         MALES.append(i_id)
+    else:
+        return
 
 def id_is_female(i_id):
     global FEMALES
     female = SESSION.query(Females).get(i_id)
     if female:
         FEMALES.append(i_id)
+    else:
+        return 
 
 def get_males():
     try:
