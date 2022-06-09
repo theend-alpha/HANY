@@ -3,6 +3,10 @@ from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
 import threading
 
+MALES = []
+
+FEMALES = []
+
 class Males(BASE):
     __tablename__ = "males"
 
@@ -40,21 +44,17 @@ def add_female(i_id):
         SESSION.add(adder)
         SESSION.commit()
 
-def id_is_male(i_id):
-    try:
-        SESSION.query(Males).get(i_id)
-        return True
-    except:
-        SESSION.close()
-        return False
+def male_append(i_id):
+    global MALES
+    males = SESSION.query(Males).get(i_id)
+    for male in males:
+        MALES.append(male)
 
-def id_is_female(i_id):
-    try:
-        SESSION.query(Females).get(i_id)
-        return True
-    except:
-        SESSION.close()
-        return False
+def female_append(i_id):
+    global FEMALES
+    females = SESSION.query(Females).get(i_id)
+    for female in females:
+        FEMALES.append(female)
 
 def get_males():
     try:
