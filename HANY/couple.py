@@ -1,4 +1,4 @@
-from HANY.AlphaDB.couples_adb import add_couple, c_is_selected, reset_couple, COUPLES
+"""from HANY.AlphaDB.couples_adb import add_couple, c_is_selected, reset_couple, COUPLES
 from pyrogram import filters, Client
 import random
 from datetime import datetime as dt 
@@ -52,6 +52,4 @@ async def couple(_, message):
 		    c1_id = random.choice(CHAT_LIST)
 		c1_mention = (await _.get_users(c1_id)).mention
 	        c2_mention = (await _.get_users(c2_id)).mention
-                c_s_m = f"""**Couple of the day**
-{c1_mention} + {c2_mention} = ❤️
-__New couple maybe choosen at 12am, next day__"""
+                """
