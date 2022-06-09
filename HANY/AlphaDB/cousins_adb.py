@@ -32,4 +32,14 @@ def rmv_cousin(i_id, f_id):
     if r_c:
         SESSION.delete(r_c)
         SESSION.commit()
-    
+
+def cousins_list_for(i_id):
+    try:
+        return (
+            SESSION.query(Cousins)
+            .filter(Cousins.i_id == i_id)
+            .order_by(Cousins.f_id.asc())
+            .all()
+        )
+    finally:
+        SESSION.close()
