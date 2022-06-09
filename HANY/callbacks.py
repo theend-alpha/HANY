@@ -44,9 +44,9 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
     elif query == "male":
         chat_id = callback_query.from_user.id
         message_id = callback_query.message.message_id
-        await rmv_female(chat_id)
-        await rmv_male(chat_id)
-        await add_male(chat_id)
+        rmv_male(chat_id)
+        rmv_female(chat_id)
+        add_male(chat_id)
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
@@ -55,9 +55,9 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
     elif query == "female":
         chat_id = callback_query.from_user.id
         message_id = callback_query.message.message_id
-        await rmv_female(chat_id)
-        await rmv_male(chat_id)
-        await add_female(chat_id)
+        rmv_female(chat_id)
+        rmv_male(chat_id)
+        add_female(chat_id)
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
