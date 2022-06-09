@@ -1,4 +1,4 @@
-from sqlalchemy import Column
+from sqlalchemy import Column, Boolean
 from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
 import threading
@@ -7,9 +7,13 @@ class Males(BASE):
     __tablename__ = "males"
 
     i_id = Column(BigInteger, primary_key=True)
+    is_id_male = Column(Boolean)
+    is_id_female = Column(Boolean)
 
-    def __init__(self, i_id):
+    def __init__(self, i_id, is_id_male=True, is_id_female=True):
         self.i_id = i_id
+        self.is_id_male = is_id_male
+        self.is_id_female = is_id_female
 
 class Females(BASE):
     __tablename__ = "females"
@@ -41,13 +45,13 @@ def add_female(i_id):
 
 def id_is_male(i_id):
     try:
-        SESSION.query(Males).get(i_id)
+        return SESSION.query(Males).get(i_id)
     finally:
         SESSION.close()
 
 def id_is_female(i_id):
     try:
-        SESSION.query(Females).get(i_id)
+        return SESSION.query(Females).get(i_id)
     finally:
         SESSION.close()
 
