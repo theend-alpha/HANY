@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, CallbackQuery, Message
 from Alone import AlphaIsAlone
-from HANY.AlphaDB.genders_adb import id_is_male, id_is_female, flee, get_males, get_females
+from HANY.AlphaDB.genders_adb import id_is_male, id_is_female, rmv_male, rmv_female, get_males, get_females
 
 B_U = """ Bot Users \n\n No of males = {} \n No of females = {} """
 
@@ -19,11 +19,11 @@ async def flew(_, message: Message):
     i_fn = message.from_user.first_name
     c_id = message.chat.id
     if id_is_male(i_id):
-        await flee(i_id)
-        await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
+        await rmv_male(i_id)
+        await _.send_message(c_id, f"gender status for {i_fn} is updated from male to None")
     elif id_is_female(i_id):
-        await flee(i_id)
-        await _.send_message(c_id, f"gender status for {i_fn} is updated to None")
+        await rmv_female(i_id)
+        await _.send_message(c_id, f"gender status for {i_fn} is updated from female to None")
     else:
         await _.send_message(c_id, f"{message.from_user.mention}, your gender is alread None\n\n Try: /mygender to set !")
 
