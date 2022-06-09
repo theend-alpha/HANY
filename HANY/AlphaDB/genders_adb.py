@@ -65,9 +65,13 @@ def flee(i_id):
         SESSION.delete(is_female)
 def id_is_male(i_id):
     is_male = SESSION.query(Males).get(i_id)
-    if is_male:
-        return True
+    try:
+        is_male
+    finally:
+        SESSION.close()
 def id_is_female(i_id):
     is_female = SESSION.query(Females).get(i_id)
-    if is_female:
-        return True
+    try:
+        is_female
+    finally:
+        SESSION.close()
