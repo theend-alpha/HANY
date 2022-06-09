@@ -5,12 +5,16 @@ from HANY.AlphaDB.genders_adb import MALES, FEMALES, rmv_male, rmv_female, get_m
 
 B_U = """ Bot Users \n\n No of males = {} \n No of females = {} """
 
+M_G = """ Current Status - {} \n\n {}, update your gender !"""
+
 @Client.on_message(filters.command(["mygender", "mygender@nothehe_bot"]) & filters.private & ~filters.edited &filters.incoming)
 async def mygender(_, message: Message):
     global i_id
     i_id = message.from_user.id
     i_m = (await _.get_users(i_id)).mention
     c_id = message.chat.id
+    id_is_male(i_id)
+    id_is_female(i_id)
     await _.send_message(c_id, f"{i_m}, Set your gender !", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
 
 @Client.on_message(filters.command(["flee", "flee@nothehe_bot"]) & filters.private & ~filters.edited & filters.incoming)
