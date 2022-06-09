@@ -50,6 +50,8 @@ async def couple(_, message):
 		c2_id = random.choice(CHAT_LIST)
 		while c1_id == c2_id:
 		    c1_id = random.choice(CHAT_LIST)
-		    c1_mention = (await _.get_users(c1_id)).mention
-		    c2_mention = (await _.get_users(c2_id)).mention
-        
+		c1_mention = (await _.get_users(c1_id)).mention
+	        c2_mention = (await _.get_users(c2_id)).mention
+                c_s_m = f"""**Couple of the day**
+{c1_mention} + {c2_mention} = ❤️
+__New couple maybe choosen at 12am, next day__"""
