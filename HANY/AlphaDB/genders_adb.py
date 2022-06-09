@@ -61,10 +61,14 @@ def get_females():
         return SESSION.query(Females).count()
     finally:
         SESSION.close()
-def flee(i_id):
+def rmv_male(i_id):
     is_male = SESSION.query(Males).get(i_id)
-    is_female = SESSION.query(Females).get(i_id)
     if is_male:
         SESSION.delete(is_male)
-    elif is_female:
+        SESSION.commit()
+
+def rmv_female(i_id):
+    is_female = SESSION.query(Females).get(i_id)
+    if is_female:
         SESSION.delete(is_female)
+        SESSION.commit()
