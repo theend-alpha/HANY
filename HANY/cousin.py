@@ -26,3 +26,6 @@ async def csn(_, message: Message):
         FEMALES.remove(i_id)
     else:
         await _.send_message(c_id, f"{i_m}, your gender is unspecified, please set it first !", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.set_gender_markup))
+
+@Client.on_callback_query()
+async def csnback(_: Client, query: CallbackQuery):
