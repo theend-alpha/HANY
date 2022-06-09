@@ -44,13 +44,13 @@ def add_female(i_id):
         SESSION.add(adder)
         SESSION.commit()
 
-def male_append(i_id):
+def male_append():
     global MALES
     males = SESSION.query(Males).all()
     for male in males:
         MALES.append(male)
 
-def female_append(i_id):
+def female_append():
     global FEMALES
     females = SESSION.query(Females).all()
     for female in females:
