@@ -5,6 +5,8 @@ from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
+    global i_id
+    global f_id
     i_id = message.from_user.id
     c_id = message.chat.id
     i_m = message.from_user.mention
@@ -29,3 +31,9 @@ async def csn(_, message: Message):
 
 @Client.on_callback_query()
 async def csnback(_: Client, query: CallbackQuery):
+    q_id = query.from_user.id
+    if f_id == q_id:
+        if query.data == "addc":
+            add_cousin(q_id, i_id)
+            add_cousin(i_id, q_id)
+            await query.edit 
