@@ -17,12 +17,11 @@ async def csn(_, message: Message):
     c_id = message.chat.id
     i_m = message.from_user.mention
     if message.reply_to_message:
+        if message.reply_to_message.from_user.is_bot
+            return 
         f_id = message.reply_to_message.from_user.id
-    else:
-        try:
-            f_id = int(message.text)
-        except:
-            message.reply("Omfoo Try: /cousin < user_id > ")
+    else: 
+        await message.reply("Reply to an user")
     f_m = (await _.get_users(f_id)).mention
     OMFOO.append(f_id)
     id_is_male(i_id)
