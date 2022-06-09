@@ -23,9 +23,11 @@ async def flew(_, message: Message):
     if i_id in MALES:
         rmv_male(i_id)
         await _.send_message(c_id, f"gender status for {i_fn} is updated from male to None")
+        MALES.remove(i_id)
     elif i_id in FEMALES:
         rmv_female(i_id)
         await _.send_message(c_id, f"gender status for {i_fn} is updated from female to None")
+        FEMALES.remove(i_id)
     else:
         await _.send_message(c_id, f"{message.from_user.mention}, your gender is alread None\n\n Try: /mygender to set !")
 
