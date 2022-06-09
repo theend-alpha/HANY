@@ -15,7 +15,14 @@ async def mygender(_, message: Message):
     c_id = message.chat.id
     id_is_male(i_id)
     id_is_female(i_id)
-    await _.send_message(c_id, f"{i_m}, Set your gender !", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
+    if i_id in MALES:
+        await _.send_message(c_id, M_G.format("👦", i_m), reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
+        MALES.remove(i_id)
+    elif i_id in FEMALES:
+        await _.send_message(c_id, M_G.format("👧", i_m), reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
+        FEMALES.remove(i_id)
+    else:
+        await _.send_message(c_id, f"{i_m}, Set your gender ")
 
 @Client.on_message(filters.command(["flee", "flee@nothehe_bot"]) & filters.private & ~filters.edited & filters.incoming)
 async def flew(_, message: Message):
