@@ -62,13 +62,23 @@ def get_females():
     finally:
         SESSION.close()
 def rmv_male(i_id):
-    is_male = SESSION.query(Males).get(i_id)
-    if is_male:
-        SESSION.delete(is_male)
-        SESSION.commit()
+    with MALE_IL:
+        is_male = SESSION.query(Males).get(i_id)
+        if is_male:
+            SESSION.delete(is_male)
+            SESSION.commit()
+            return True
+        else:
+            SESSION.close()
+            return False
 
 def rmv_female(i_id):
-    is_female = SESSION.query(Females).get(i_id)
-    if is_female:
-        SESSION.delete(is_female)
-        SESSION.commit()
+    with FEMALE_IL:
+        is_female = SESSION.query(Females).get(i_id)
+        if is_female:
+            SESSION.delete(is_female)
+            SESSION.commit()
+            return True
+        else:
+            SESSION.close()
+            return False
