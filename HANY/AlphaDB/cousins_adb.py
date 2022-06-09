@@ -15,22 +15,19 @@ class Cousins(BASE):
 Cousins.__table__.create(checkfirst=True)
 
 
-
-async def add_cousin(i_id, f_id):
+def add_cousin(i_id, f_id):
     if_c = SESSION.query(Cousins).get(i_id, f_id)
     if not if_c:
         one_c = Cousins(i_id, f_id)
         SESSION.add(one_c)
         SESSION.commit()
-
-async def are_cousins(i_id, f_id):
+def are_cousins(i_id, f_id):
     try:
         SESSION.query(Cousins).get(i_id, f_id)
         cousins = i_id.f_id
     finally:
         SESSION.close()
-
-async def rmv_cousin(i_id, f_id):
+def rmv_cousin(i_id, f_id):
     r_c = SESSION.query(Cousins).get(i_id, f_id)
     if r_c:
         SESSION.delete(r_c)
