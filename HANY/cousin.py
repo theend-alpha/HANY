@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup
 from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousins_list_for
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
+from Alone import AlphaIsAlone
 
 OMFOO = []
 
