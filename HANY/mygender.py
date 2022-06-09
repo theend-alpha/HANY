@@ -22,7 +22,7 @@ async def mygender(_, message: Message):
         await _.send_message(c_id, M_G.format("👧", i_m), reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
         FEMALES.remove(i_id)
     else:
-        await _.send_message(c_id, f"{i_m}, Set your gender ")
+        await _.send_message(c_id, f"{i_m}, Set your gender ", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.gender_markup))
 
 @Client.on_message(filters.command(["flee", "flee@nothehe_bot"]) & filters.private & ~filters.edited & filters.incoming)
 async def flew(_, message: Message):
