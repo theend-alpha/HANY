@@ -1,4 +1,4 @@
-from HANY.AlphaDB.couples_adb import add_couple, c_is_selected, reset_couple
+from HANY.AlphaDB.couples_adb import add_couple, c_is_selected, reset_couple, COUPLES
 from pyrogram import filters, Client
 import random
 from datetime import datetime as dt 
