@@ -1,6 +1,7 @@
 from sqlalchemy import Column
 from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
+import threading
 
 class Males(BASE):
     __tablename__ = "males"
@@ -22,30 +23,34 @@ Males.__table__.create(checkfirst=True)
 
 Females.__table__.create(checkfirst=True)
 
+MALE_IL = threading.RLock()
 
-async def add_male(i_id):
-    is_male = SESSION.query(Males).get(i_id)
-    is_female = SESSION.query(Females).get(i_id)
-    if is_female:
-        SESSION.delete(is_female)
-    elif is_male:
-        return
-    elif not is_male:
+FEMALE_IL = threading.RLock()
+
+def add_male(i_id):
+    with MALE_IL:
         adder = Males(i_id)
         SESSION.add(adder)
         SESSION.commit()
 
 def add_female(i_id):
-    is_female = SESSION.query(Females).get(i_id)
-    is_male = SESSION.query(Males).get(i_id)
-    if is_female:
-        return
-    elif is_male:
-        SESSION.delete(is_male)
-    elif not is_female:
+    with FEMALE_IL:
         adder = Females(i_id)
         SESSION.add(adder)
         SESSION.commit()
+
+def id_is_male(i_id):
+    try:
+        SESSION.query(Males).get(i_id)
+    finally:
+        SESSION.close()
+
+def id_is_female(i_id):
+    try:
+        SESSION.query(Females).get(i_id)
+    finally:
+        SESSION.close()
+
 def get_males():
     try:
         return SESSION.query(Males).count()
@@ -63,15 +68,3 @@ def flee(i_id):
         SESSION.delete(is_male)
     elif is_female:
         SESSION.delete(is_female)
-def id_is_male(i_id):
-    is_male = SESSION.query(Males).get(i_id)
-    try:
-        is_male
-    finally:
-        SESSION.close()
-def id_is_female(i_id):
-    is_female = SESSION.query(Females).get(i_id)
-    try:
-        is_female
-    finally:
-        SESSION.close()
