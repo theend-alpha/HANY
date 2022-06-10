@@ -55,5 +55,15 @@ def cousins_list_for(i_id):
     finally:
         SESSION.close()
 
-def waiting_list(i_id):
-    
+def add_to_waiting(i_id):
+    in_waiting = SESSION.query(Wait).get(i_id)
+    if not in_waiting:
+        adder = Wait(i_id)
+        SESSION.add(adder)
+        SESSION.commit()
+
+def rmv_from_waiting(i_id):
+    in_waiting = SESSION.query(Wait).get(i_id)
+    if in_waiting:
+        SESSION.delete(in_waiting)
+        SESSION.commit()  
