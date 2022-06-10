@@ -21,12 +21,14 @@ def add_cousin(i_id, f_id):
         one_c = Cousins(i_id, f_id)
         SESSION.add(one_c)
         SESSION.commit()
+
 def are_cousins(i_id, f_id):
     try:
         SESSION.query(Cousins).get(i_id, f_id)
         cousins = i_id.f_id
     finally:
         SESSION.close()
+
 def rmv_cousin(i_id, f_id):
     r_c = SESSION.query(Cousins).get(i_id, f_id)
     if r_c:
