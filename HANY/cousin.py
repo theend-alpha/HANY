@@ -17,7 +17,7 @@ async def csn(_, message: Message):
     c_id = message.chat.id
     i_m = message.from_user.mention
     if message.reply_to_message:
-        if message.reply_to_message.from_user.is_bot
+        if message.reply_to_message.from_user.is_bot:
             return 
         f_id = message.reply_to_message.from_user.id
     else: 
