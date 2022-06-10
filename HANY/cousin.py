@@ -12,7 +12,6 @@ async def csn(_, message: Message):
     global f_id
     global f_m
     global i_m
-    global OMFOO
     i_id = message.from_user.id
     c_id = message.chat.id
     i_m = message.from_user.mention
@@ -22,7 +21,6 @@ async def csn(_, message: Message):
     if f_id == i_id:
         return
     f_m = (await _.get_users(f_id)).mention
-    OMFOO.append(f_id)
     id_is_male(i_id)
     id_is_female(i_id)
     if i_id in MALES:
@@ -40,9 +38,8 @@ async def csnback(_: Client, query: CallbackQuery):
     global f_id
     global i_m
     global f_m
-    global OMFOO
     q_id = query.from_user.id
-    if q_id in OMFOO:
+    if q_id == f_id:
         if query.data == "addc":
             try:
                 add_cousin(q_id, i_id)
