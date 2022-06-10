@@ -23,7 +23,10 @@ async def csn(_, message: Message):
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
     f_m = (await _.get_users(f_id)).mention
-    id_in_waiting(f_id, i_id)
+    if check_waiting_list(f_id, i_id) is True:
+        WAITING_LIST.append(f_id)
+    else:
+        return
     id_is_male(i_id)
     id_is_male(f_id)
     id_is_female(i_id)
