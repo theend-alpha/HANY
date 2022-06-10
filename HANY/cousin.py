@@ -18,12 +18,12 @@ async def csn(_, message: Message):
     i_m = message.from_user.mention
     if message.reply_to_message:
         if message.reply_to_message.from_user.is_bot:
-            return 
-        if i_id == f_id:
-            return 
+            return  
         try:
             f_id = message.reply_to_message.from_user.id
         except:
+            return
+        if i_id == f_id:
             return
     else: 
         await message.reply("Reply to an user")
