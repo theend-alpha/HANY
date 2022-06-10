@@ -72,10 +72,10 @@ def rmv_from_waiting(i_id, f_id):
         SESSION.delete(in_waiting)
         SESSION.commit()  
 
-def id_is_waiting(i_id, f_id):
+def id_in_waiting(i_id, f_id):
     global WAITING_LIST
-    is_waiting = SESSION.query(Wait).get(i_id, f_id)
-    if is_waiting:
+    in_waiting = SESSION.query(Wait).get(i_id, f_id)
+    if in_waiting:
         WAITING_LIST.append(i_id)
     else:
         return
