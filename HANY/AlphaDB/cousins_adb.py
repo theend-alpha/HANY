@@ -72,9 +72,8 @@ def rmv_from_waiting(i_id, f_id):
         SESSION.commit()  
 
 def check_waiting_list(i_id, f_id):
-    try:
-        SESSION.query(Wait).get(i_id, f_id)
+    getter = SESSION.query(Wait).get(i_id, f_id)
+    if getter:
         return True
-    except:
-        SESSION.close()
+    else:
         return False
