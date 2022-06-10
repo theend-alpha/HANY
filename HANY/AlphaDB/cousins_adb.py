@@ -76,6 +76,6 @@ def id_is_waiting(i_id, f_id):
     global WAITING_LIST
     is_waiting = SESSION.query(Wait).get(i_id, f_id)
     if is_waiting:
-        WAITING_LIST.append(i_id)
+        WAITING_LIST.append(f_id)
     else:
         return
