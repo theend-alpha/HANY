@@ -6,6 +6,8 @@ from Alone import AlphaIsAlone
 
 ACCEPT_TEXT = "{} {} added back {} {} as their cousin !"
 
+INIT_TEXT = """ {} {} wants {} {} as {} cousin.. \n\n Try: reply < /cousin > to add back !""" 
+
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
     i_id = message.from_user.id
@@ -24,5 +26,10 @@ async def csn(_, message: Message):
     id_is_female(f_id)
     if f_id in WAITING_LIST:
         await _.send_message(c_id, ACCEPT_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
-
-    
+        WAITING_LIST.remove(f_id)
+    elif i_id in MALES:
+        await _.send_message(c_id, INIT_TEXT.format(" 👦 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "his"))
+    elif i_id in FEMALES:
+        await _.send_message(c_id, INIT_TEXT.format(" 👧 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "her"))
+    MALES.clear()
+    FEMALES.clear()
