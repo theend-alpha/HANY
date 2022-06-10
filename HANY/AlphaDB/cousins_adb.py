@@ -76,6 +76,6 @@ def check_waiting_list(i_id, f_id):
     try:
         SESSION.query(Wait).get(i_id, f_id)
         return True
-    else:
+    except:
         SESSION.close()
         return False
