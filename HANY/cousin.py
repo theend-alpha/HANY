@@ -30,10 +30,10 @@ async def csn(_, message: Message):
         rmv_from_waiting(f_id, i_id)
         await _.send_message(c_id, ACCEPT_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
         WAITING_LIST.remove(f_id)
-    elif i_id in MALES:
+    elif i_id in MALES and f_id not in WAITING_LIST:
         add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👦 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "his"))
-    elif i_id in FEMALES:
+    elif i_id in FEMALES and f_id not in WAITING_LIST:
         add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👧 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "her"))
     else:
