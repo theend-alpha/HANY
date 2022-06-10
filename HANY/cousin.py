@@ -4,9 +4,9 @@ from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousin
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 from Alone import AlphaIsAlone
 
-ACCEPT_TEXT = "{} {} added back {} {} as their cousin !"
+ACCEPT_TEXT = "✨ {}{} 💫 added back ✨ {}{} 💫 as their cousin !"
 
-INIT_TEXT = """ {} {} wants {} {} as {} cousin.. \n\n Try: reply < /cousin > to add back !""" 
+INIT_TEXT = """✨ {}{} 💫 wants ✨ {}{} 💫 as {} cousin.. \n\n Try: reply < /cousin > to add back !""" 
 
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
