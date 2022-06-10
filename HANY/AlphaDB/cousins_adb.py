@@ -2,6 +2,8 @@ from sqlalchemy import Column
 from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
 
+WAITING_LIST = []
+
 class Cousins(BASE):
     __tablename__ = "cousins"
     
@@ -67,3 +69,11 @@ def rmv_from_waiting(i_id):
     if in_waiting:
         SESSION.delete(in_waiting)
         SESSION.commit()  
+
+def id_is_waiting(i_id):
+    global WAITING_LIST
+    is_waiting = SESSION.query(Wait).get(i_id)
+    if is_waiting:
+        WAITING_LIST.append(i_id)
+    else:
+        return
