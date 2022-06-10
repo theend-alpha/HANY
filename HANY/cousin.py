@@ -25,6 +25,8 @@ async def csn(_, message: Message):
     id_is_female(i_id)
     id_is_female(f_id)
     if f_id in WAITING_LIST:
+        add_cousin(i_id, f_id)
+        add_cousin(f_id, i_id)
         await _.send_message(c_id, ACCEPT_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
         WAITING_LIST.remove(f_id)
     elif i_id in MALES:
