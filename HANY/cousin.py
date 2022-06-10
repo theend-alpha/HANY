@@ -54,3 +54,4 @@ async def eww(_, message: Message):
     rmv_cousin(i_id, f_id)
     rmv_cousin(f_id, i_id)
     await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
+    MALES.clear()
