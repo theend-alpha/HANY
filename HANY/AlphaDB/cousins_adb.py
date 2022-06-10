@@ -18,9 +18,11 @@ class Wait(BASE):
     __tablename__ = "waiting"
 
     i_id = Column(BigInteger, primary_key=True)
+    f_id = Column(BigInteger, primary_key=True)
 
     def __init__(self, i_id):
         self.i_id = i_id
+        self.f_id = f_id
 
 Cousins.__table__.create(checkfirst=True)
 
@@ -57,22 +59,22 @@ def cousins_list_for(i_id):
     finally:
         SESSION.close()
 
-def add_to_waiting(i_id):
-    in_waiting = SESSION.query(Wait).get(i_id)
+def add_to_waiting(i_id, f_id):
+    in_waiting = SESSION.query(Wait).get(i_id, f_id)
     if not in_waiting:
-        adder = Wait(i_id)
+        adder = Wait(i_id, f_id)
         SESSION.add(adder)
         SESSION.commit()
 
-def rmv_from_waiting(i_id):
-    in_waiting = SESSION.query(Wait).get(i_id)
+def rmv_from_waiting(i_id, f_id):
+    in_waiting = SESSION.query(Wait).get(i_id, f_id)
     if in_waiting:
         SESSION.delete(in_waiting)
         SESSION.commit()  
 
-def id_is_waiting(i_id):
+def id_is_waiting(i_id, f_id):
     global WAITING_LIST
-    is_waiting = SESSION.query(Wait).get(i_id)
+    is_waiting = SESSION.query(Wait).get(i_id, f_id)
     if is_waiting:
         WAITING_LIST.append(i_id)
     else:
