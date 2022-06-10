@@ -56,8 +56,12 @@ async def csnback(_: Client, query: CallbackQuery):
             try:
                 await query.message.delete()
                 OMFOO.remove(q_id)
+            except:
+                return
     else:
         if query.data in ["addc", "deny"]:
             try:
                 await query.answer("This is not for you dude", show_alert=True)
+            except:
+                return
         
