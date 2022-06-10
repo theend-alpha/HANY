@@ -8,6 +8,8 @@ ACCEPT_TEXT = "✨ {}{} 💫 added back ✨ {}{} 💫 as their cousin !"
 
 INIT_TEXT = """✨ {}{} 💫 wants ✨ {}{} 💫 as {} cousin.. \n\n Try: reply < /cousin > to add back !""" 
 
+ABANDON_TEXT = "{}{} abandoned {}{} as their cousin.."
+
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
     i_id = message.from_user.id
@@ -40,3 +42,15 @@ async def csn(_, message: Message):
         await message.reply(" Your gender is unspecified, Try: /mygender 👇 ", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.set_gender_markup))
     MALES.clear()
     FEMALES.clear()
+
+@Client.on_message(filters.command(["leavecousin", "leavecousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
+async def eww(_, message: Message):
+    i_id = message.from_user.id
+    f_id = message.reply_to_message.from_user.id
+    i_m = message.from_user.mention
+    f_m = message.reply_to_message.from_user.mention
+    id_is_male(i_id)
+    id_is_female(i_id)
+    id_is_male(f_id)
+    id_is_female(f_id)
+    await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
