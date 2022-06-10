@@ -2,7 +2,6 @@ from sqlalchemy import Column
 from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
 
-WAITING_LIST = []
 
 class Cousins(BASE):
     __tablename__ = "cousins"
