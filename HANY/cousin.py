@@ -31,10 +31,10 @@ async def csn(_, message: Message):
         await _.send_message(c_id, ACCEPT_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
         WAITING_LIST.remove(f_id)
     elif i_id in MALES:
-        add_to_waiting(i_id)
+        add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👦 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "his"))
     elif i_id in FEMALES:
-        add_to_waiting(i_id)
+        add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👧 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "her"))
     else:
         await message.reply(" Your gender is unspecified, Try: /mygender 👇 ", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.set_gender_markup))
