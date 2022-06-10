@@ -12,8 +12,17 @@ class Cousins(BASE):
         self.i_id = i_id 
         self.f_id = f_id
 
+class Wait(BASE):
+    __tablename__ = "waiting"
+
+    i_id = Column(BigInteger, primary_key=True)
+
+    def __init__(self, i_id):
+        self.i_id = i_id
+
 Cousins.__table__.create(checkfirst=True)
 
+Wait.__table__.create(checkfirst=True)
 
 def add_cousin(i_id, f_id):
     if_c = SESSION.query(Cousins).get(i_id, f_id)
@@ -45,3 +54,6 @@ def cousins_list_for(i_id):
         )
     finally:
         SESSION.close()
+
+def waiting_list(i_id):
+    
