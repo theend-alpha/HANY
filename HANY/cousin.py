@@ -45,14 +45,19 @@ async def csnback(_: Client, query: CallbackQuery):
     q_id = query.from_user.id
     if q_id in OMFOO:
         if query.data == "addc":
-            add_cousin(q_id, i_id)
-            add_cousin(i_id, q_id)
-            await query.message.reply(f"{f_m} accepted {i_m} as their cousin ! ")
-            OMFOO.remove(q_id)
+            try:
+                add_cousin(q_id, i_id)
+                add_cousin(i_id, q_id)
+                await query.message.reply(f"{f_m} accepted {i_m} as their cousin ! ")
+                OMFOO.remove(q_id)
+            except:
+                return
         elif query.data == "deny":
-            await query.message.delete()
-            OMFOO.remove(q_id)
+            try:
+                await query.message.delete()
+                OMFOO.remove(q_id)
     else:
         if query.data in ["addc", "deny"]:
-            await query.answer("This is not for you dude", show_alert=True)
+            try:
+                await query.answer("This is not for you dude", show_alert=True)
         
