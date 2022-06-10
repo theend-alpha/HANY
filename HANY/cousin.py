@@ -19,6 +19,8 @@ async def csn(_, message: Message):
     if message.reply_to_message:
         if message.reply_to_message.from_user.is_bot:
             return 
+        if i_id == f_id:
+            return 
         try:
             f_id = message.reply_to_message.from_user.id
         except:
