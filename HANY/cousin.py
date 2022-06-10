@@ -1,8 +1,10 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup
-from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousins_list_for, add_to_waiting, rmv_from_waiting, id_in_waiting, WAITING_LIST
+from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousins_list_for, add_to_waiting, rmv_from_waiting, check_waiting_list
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 from Alone import AlphaIsAlone
+
+WAITING_LIST = []
 
 ACCEPT_TEXT = "✨ {}{} 💫 added back ✨ {}{} 💫 as their cousin !"
 
