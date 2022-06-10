@@ -19,7 +19,7 @@ async def csn(_, message: Message):
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
     f_m = (await _.get_users(f_id)).mention
-    id_is_waiting(f_id)
+    id_is_waiting(f_id, i_id)
     id_is_male(i_id)
     id_is_male(f_id)
     id_is_female(i_id)
@@ -33,5 +33,7 @@ async def csn(_, message: Message):
     elif i_id in FEMALES:
         add_to_waiting(i_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👧 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "her"))
+    else:
+        await message.reply(" Your gender is unspecified, Try: /mygender 👇 ", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.set_gender_markup))
     MALES.clear()
     FEMALES.clear()
