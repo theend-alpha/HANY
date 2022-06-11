@@ -4,6 +4,8 @@ from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousin
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 from Alone import AlphaIsAlone
 
+self = 7777000
+
 WAITING_LIST = []
 
 ACCEPT_TEXT = "✨ {}{} 💫 added back ✨ {}{} 💫 as their cousin !"
