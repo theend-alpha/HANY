@@ -27,6 +27,10 @@ Cousins.__table__.create(checkfirst=True)
 
 Wait.__table__.create(checkfirst=True)
 
+def __init__(self, i_id, f_id):
+        self.i_id = i_id
+        self.f_id = f_id
+
 def add_cousin(i_id, f_id):
     if_c = SESSION.query(Cousins).get(i_id, f_id)
     if not if_c:
