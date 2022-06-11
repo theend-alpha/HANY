@@ -1,7 +1,7 @@
 from sqlalchemy import Column
 from HANY.AlphaDB import BASE, SESSION
 from sqlalchemy.sql.sqltypes import BigInteger
-
+import threading
 
 class Cousins(BASE):
     __tablename__ = "cousins"
@@ -27,13 +27,17 @@ Cousins.__table__.create(checkfirst=True)
 
 Wait.__table__.create(checkfirst=True)
 
+COUSIN_LOCK = threading.RLock()
+
+WAITING_LOCK = threading.RLock()
 
 def add_cousin(i_id, f_id):
-    if_c = SESSION.query(Cousins).get(i_id, f_id)
-    if not if_c:
-        one_c = Cousins(i_id, f_id)
-        SESSION.add(one_c)
-        SESSION.commit()
+    with COUSIN_LOCK:
+        if_c = SESSION.query(Cousins).get(i_id, f_id)
+        if not if_c:
+            one_c = Cousins(i_id, f_id)
+            SESSION.add(one_c)
+            SESSION.commit()
 
 def are_cousins(i_id, f_id):
     try:
@@ -43,10 +47,11 @@ def are_cousins(i_id, f_id):
         SESSION.close()
 
 def rmv_cousin(i_id, f_id):
-    r_c = SESSION.query(Cousins).get(i_id, f_id)
-    if r_c:
-        SESSION.delete(r_c)
-        SESSION.commit()
+    with COUSIN_LOCK:
+        r_c = SESSION.query(Cousins).get(i_id, f_id)
+        if r_c:
+            SESSION.delete(r_c)
+            SESSION.commit()
 
 def cousins_list_for(i_id):
     try:
@@ -60,17 +65,19 @@ def cousins_list_for(i_id):
         SESSION.close()
 
 def add_to_waiting(i_id, f_id):
-    in_waiting = SESSION.query(Wait).get(i_id, f_id)
-    if not in_waiting:
-        adder = Wait(i_id, f_id)
-        SESSION.add(adder)
-        SESSION.commit()
+    with WAITING_LOCK:
+        in_waiting = SESSION.query(Wait).get(i_id, f_id)
+        if not in_waiting:
+            adder = Wait(i_id, f_id)
+            SESSION.add(adder)
+            SESSION.commit()
 
 def rmv_from_waiting(i_id, f_id):
-    in_waiting = SESSION.query(Wait).get(i_id, f_id)
-    if in_waiting:
-        SESSION.delete(in_waiting)
-        SESSION.commit()  
+    with WAITING_LOCK:
+        in_waiting = SESSION.query(Wait).get(i_id, f_id)
+        if in_waiting:
+            SESSION.delete(in_waiting)
+            SESSION.commit()  
 
 def check_waiting_list(i_id, f_id):
     getter = SESSION.query(Wait).get(i_id, f_id)
