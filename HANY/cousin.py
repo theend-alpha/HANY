@@ -25,7 +25,7 @@ async def csn(_, message: Message):
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
     f_m = (await _.get_users(f_id)).mention
-    if check_waiting_list(self, f_id, i_id) is True:
+    if check_waiting_list(f_id, i_id) is True:
         WAITING_LIST.append(f_id)
     else:
         return
@@ -34,16 +34,16 @@ async def csn(_, message: Message):
     id_is_female(i_id)
     id_is_female(f_id)
     if f_id in WAITING_LIST:
-        add_cousin(self, i_id, f_id)
-        add_cousin(self, f_id, i_id)
-        rmv_from_waiting(self, f_id, i_id)
+        add_cousin(i_id, f_id)
+        add_cousin(f_id, i_id)
+        rmv_from_waiting(f_id, i_id)
         await _.send_message(c_id, ACCEPT_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
         WAITING_LIST.remove(f_id)
     elif i_id in MALES and f_id not in WAITING_LIST:
-        add_to_waiting(self, i_id, f_id)
+        add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👦 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "his"))
     elif i_id in FEMALES and f_id not in WAITING_LIST:
-        add_to_waiting(self, i_id, f_id)
+        add_to_waiting(i_id, f_id)
         await _.send_message(c_id, INIT_TEXT.format(" 👧 ", i_m, " 👧 " if f_id in FEMALES else " 👦 ", f_m, "her"))
     else:
         await message.reply(" Your gender is unspecified, Try: /mygender 👇 ", reply_markup=InlineKeyboardMarkup(AlphaIsAlone.set_gender_markup))
@@ -58,7 +58,7 @@ async def eww(_, message: Message):
     f_m = message.reply_to_message.from_user.mention
     id_is_male(i_id)
     id_is_male(f_id)
-    rmv_cousin(self, i_id, f_id)
-    rmv_cousin(self,f_id, i_id)
+    rmv_cousin(i_id, f_id)
+    rmv_cousin(f_id, i_id)
     await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
     MALES.clear()
