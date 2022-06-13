@@ -55,12 +55,13 @@ async def eww(_, message: Message):
     f_id = message.reply_to_message.from_user.id
     i_m = message.from_user.mention
     f_m = message.reply_to_message.from_user.mention
-    id_is_male(i_id)
-    id_is_male(f_id)
-    await rmv_cousin(i_id, f_id)
-    await rmv_cousin(f_id, i_id)
-    await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
-    MALES.clear()
+    if await are_cousins(i_id, f_id) is True:
+        id_is_male(i_id)
+        id_is_male(f_id)
+        await rmv_cousin(i_id, f_id)
+        await rmv_cousin(f_id, i_id)
+        await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
+        MALES.clear()
 
 @Client.on_message(filters.command(["cousins", "cousins@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.via_bot & ~filters.forwarded)
 async def hehe(_, message: Message):
