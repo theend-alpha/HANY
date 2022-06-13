@@ -73,7 +73,7 @@ async def hehe(_, message: Message):
     try:
         cousins = await get_cousin_ids(i_id)
         for cousin in cousins:
-        CSN.append(cousin)
+            CSN.append(cousin)
     except Exception as e:
         await message.reply(f"omfoo :- {e}")
     no_of_csns = len(CSN)
