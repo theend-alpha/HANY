@@ -66,7 +66,7 @@ async def eww(_, message: Message):
 @Client.on_message(filters.command(["cousins", "cousins@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.via_bot & ~filters.forwarded)
 async def hehe(_, message: Message):
     i_id = message.from_user.id
-    i_fn = message.from_user.firstname
+    i_fn = message.from_user.first_name
     c_id = message.chat.id
     CSN = []
     try:
