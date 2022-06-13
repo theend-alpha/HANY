@@ -83,7 +83,7 @@ async def hehe(_, message: Message):
         csn_msg = """"""
         omfoo = str(csn)
         YashuAlpha += f"{csn_m} ({omfoo})" + "\n"
-    csn_msg += "• " + YashuAlpha
+    csn_msg = "• " + YashuAlpha
     final_msg = f"Cousins for i_fn \n\n {csn_msg} \n "
     await _.send_message(c_id, final_msg)
 
