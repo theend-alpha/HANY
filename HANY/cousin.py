@@ -57,6 +57,8 @@ async def eww(_, message: Message):
     f_id = message.reply_to_message.from_user.id
     i_m = message.from_user.mention
     f_m = message.reply_to_message.from_user.mention
+    if not message.reply_to_message:
+        await message.reply("reply to someone")
     if await are_cousins(i_id, f_id) is True:
         id_is_male(i_id)
         id_is_male(f_id)
