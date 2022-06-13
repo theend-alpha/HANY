@@ -21,6 +21,8 @@ async def csn(_, message: Message):
     c_id = message.chat.id
     i_m = message.from_user.mention
     f_id = message.reply_to_message.from_user.id
+    if not message.reply_to_message:
+        await message.reply("reply to someone")
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
     f_m = (await _.get_users(f_id)).mention
