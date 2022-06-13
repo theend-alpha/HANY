@@ -21,15 +21,12 @@ async def rmv_cousin(i_id: int, f_id: int):
     if cousins:
         await cousinsdb.delete_one({"i_id": i_id}, {"f_id": f_id})
 
-async def get_cousins(i_id: int):
-    found = await cousinsdb.find_one({"i_id": i_id})
-    if not found:
-        return {}
-    return found["f_id"]
-
-async def get_cousin_ids(i_id: int):
-    COUSINS = []  
-    for cousin in await get_cousins(i_id):
+async def get_cousin_ids(i_id: int) -> list:
+    cousins = cousinsdb.find({"i_id": i_id}, {"f_id": {"$gt": 0}})
+    if not cousins:
+        return []
+    COUSINS = []
+    for cousin in await cousins.to_list(length=1000000000):
         COUSINS.append(cousin)
     return COUSINS
 
