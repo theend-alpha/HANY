@@ -20,8 +20,6 @@ async def csn(_, message: Message):
     i_id = message.from_user.id
     c_id = message.chat.id
     i_m = message.from_user.mention
-    if message.reply_to_message.from_user.is_bot:
-        return
     f_id = message.reply_to_message.from_user.id
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
