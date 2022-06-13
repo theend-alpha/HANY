@@ -22,3 +22,13 @@ async def rmv_cousin(i_id: int, f_id: int):
 
 async def get_cousins(i_id: int):
     found = await cousinsdb.find_one({"i_id": i_id})
+    if not found:
+        return {}
+    return found["f_id"]
+
+async def get_cousin_ids(i_id: int):
+    COUSINS = []  
+    for cousin in await get_cousins(i_id):
+        COUSINS.append(cousin)
+    return COUSINS
+    
