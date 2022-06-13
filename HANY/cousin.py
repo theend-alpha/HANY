@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup
-from HANY.AlphaDB.cousins_mdb import add_cousin, rmv_cousin, are_cousins, add_to_waiting, rmv_from_waiting, is_waiting
+from HANY.AlphaDB.cousins_mdb import add_cousin, rmv_cousin, are_cousins, add_to_waiting, rmv_from_waiting, is_waiting, get_cousin_ids
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 from Alone import AlphaIsAlone
 
@@ -63,3 +63,28 @@ async def eww(_, message: Message):
     rmv_cousin(f_id, i_id)
     await _.send_message(message.chat.id, ABANDON_TEXT.format(" 👦 " if i_id in MALES else " 👧 ", i_m, " 👦 " if f_id in MALES else " 👧 ", f_m))
     MALES.clear()
+
+@Client.on_message(filters.command(["cousins", "cousins@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.via_bot & ~filters.forwarded)
+async def hehe(_, message: Message):
+    i_id = message.from_user.id
+    i_fn = message.from_user.firstname
+    c_id = message.chat.id
+    CSN = []
+    try:
+        cousins = await get_cousin_ids(i_id)
+        for cousin in cousins:
+        CSN.append(cousin)
+    except Exception as e:
+        await message.reply(f"omfoo :- {e}")
+    no_of_csns = len(CSN)
+    if no_of_csns == 0:
+        await message.reply("""sed, you don't having any cousins ! \n\n Try: < /cousin > reply to a user """)
+    for csn in CSN:
+        csn_m = (await _.get_users(csn)).mention
+        csn_msg = """"""
+        omfoo = str(csn)
+        YashuAlpha = f"{csn_m} ({omfoo})"
+    csn_msg += "• " + YashuAlpha + "\n"
+    final_msg = f"Cousins for i_fn \n\n {csn_msg} \n "
+    await _.send_message(c_id, final_msg)
+
