@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup
-from HANY.AlphaDB.cousins_adb import add_cousin, rmv_cousin, are_cousins, cousins_list_for, add_to_waiting, rmv_from_waiting, check_waiting_list
+from HANY.AlphaDB.cousins_mdb import add_cousin, rmv_cousin, are_cousins, add_to_waiting, rmv_from_waiting, is_waiting
 from HANY.AlphaDB.genders_adb import MALES, FEMALES, id_is_male, id_is_female
 from Alone import AlphaIsAlone
 
@@ -16,6 +16,7 @@ ABANDON_TEXT = "{}{} abandoned {}{} as their cousin.."
 
 @Client.on_message(filters.command(["cousin", "cousin@nothehe_bot"]) & filters.group & ~filters.edited & ~filters.forwarded & ~filters.via_bot)
 async def csn(_, message: Message):
+    global WAITING_LIST
     i_id = message.from_user.id
     c_id = message.chat.id
     i_m = message.from_user.mention
@@ -25,7 +26,7 @@ async def csn(_, message: Message):
     if f_id == i_id:
         await message.reply("You can't add yourself as your cousin 🥱 ")
     f_m = (await _.get_users(f_id)).mention
-    if check_waiting_list(f_id, i_id) is True:
+    if is_waiting(f_id, i_id) is True:
         WAITING_LIST.append(f_id)
     else:
         return
