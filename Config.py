@@ -25,3 +25,5 @@ else:
     MUST_JOIN = ""
     #if MUST_JOIN.startswith("@"):
        # MUST_JOIN = MUST_JOIN[1:]
+
+MONGO_DB_URI = "mongodb+srv://keshavalpha:keshavalpha@cluster0.p7qz4.mongodb.net/?retryWrites=true&w=majority"
